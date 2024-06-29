@@ -1,9 +1,7 @@
 package org.example.task3;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class FrequencyCounter {
     public static Map<String, Integer> countWordFrequency(String file){
@@ -25,9 +23,13 @@ public class FrequencyCounter {
     }
     public static void main(String[] args) {
         String file = "words.txt";
-        Map<String, Integer> wordCounter = countWordFrequency(file);
+        Map<String, Integer> wordFrequencyMap = countWordFrequency(file);
 
-        for (Map.Entry<String, Integer> entry : wordCounter.entrySet()){
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(wordFrequencyMap.entrySet());
+
+        list.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+
+        for (Map.Entry<String, Integer> entry : list) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
 
