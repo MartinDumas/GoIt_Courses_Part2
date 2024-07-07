@@ -25,9 +25,11 @@ public class FrequencyCounter {
         String file = "words.txt";
         Map<String, Integer> wordFrequencyMap = countWordFrequency(file);
 
-        List<Map.Entry<String, Integer>> list = new ArrayList<>(wordFrequencyMap.entrySet());
-
-        list.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+        List<Map.Entry<String, Integer>> list
+                = new ArrayList<>(wordFrequencyMap.entrySet())
+                .stream()
+                .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue())).toList();
+        
 
         for (Map.Entry<String, Integer> entry : list) {
             System.out.println(entry.getKey() + " " + entry.getValue());
