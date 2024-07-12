@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class PhoneNumberValidator {
     public static void main(String[] args) {
-        File file = new File("file1.txt");
+        File file = new File("homeWork10//file1.txt");
 
         String pattern1 = "\\(\\d{3}\\) \\d{3}-\\d{4}";
         String pattern2 = "\\d{3}-\\d{3}-\\d{4}";

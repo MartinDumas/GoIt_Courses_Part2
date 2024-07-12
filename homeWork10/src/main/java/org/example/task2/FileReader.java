@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class FileReader {
     public static void main(String[] args) {
-        File file = new File("file2.txt");
+        File file = new File("homeWork10//file2.txt");
         List<User> userList = new ArrayList<>();
         try (FileInputStream fIs = new FileInputStream(file);
              Scanner fileScanner = new Scanner(fIs)) {
@@ -32,7 +32,7 @@ public class FileReader {
             ex.printStackTrace();
         }
         Gson gsonFile = new GsonBuilder().setPrettyPrinting().create();
-        try(Writer writer = new FileWriter("user.json")) {
+        try(Writer writer = new FileWriter("homeWork10//user.json")) {
             gsonFile.toJson(userList, writer);
 
         }catch (IOException e){

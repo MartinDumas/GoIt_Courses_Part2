@@ -12,26 +12,14 @@ public class Zipper {
         Iterator<T> firstIterator = first.iterator();
         Iterator<T> secondIterator = second.iterator();
 
-        Iterator<T> zippedIterator = new Iterator<T>() {
-            private boolean isFirst = true;
-            @Override
-            public boolean hasNext() {
-                return firstIterator.hasNext() && secondIterator.hasNext();
-            }
-
-            @Override
-            public T next() {
-                if (isFirst){
-                    isFirst = false;
-                    return firstIterator.next();
-                } else {
-                    isFirst =true;
-                    return secondIterator.next();
-                }
-            }
-        };
-        Spliterator<T> spliterator = Spliterators.spliteratorUnknownSize(zippedIterator,Spliterator.ORDERED);
-        return StreamSupport.stream(spliterator, false);
+        return StreamSupport.stream(
+                Spliterators.spliteratorUnknownSize(
+                        Stream.iterate(new Object[]{firstIterator, secondIterator, true}, arr -> new Object[]{arr[0], arr[1], !(boolean)arr[2]})
+                                .takeWhile(arr -> ((Iterator<T>)arr[0]).hasNext() && ((Iterator<T>)arr[1]).hasNext())
+                                .map(arr -> (boolean)arr[2] ? ((Iterator<T>)arr[0]).next() : ((Iterator<T>)arr[1]).next())
+                                .iterator(), 0
+                ), false
+        );
 
     }
 
