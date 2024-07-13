@@ -22,7 +22,7 @@ public class FrequencyCounter {
         return wordFrequencyMap;
     }
     public static void main(String[] args) {
-        String file = "words.txt";
+        String file = "homeWork10//words.txt";
         Map<String, Integer> wordFrequencyMap = countWordFrequency(file);
 
         List<Map.Entry<String, Integer>> list
