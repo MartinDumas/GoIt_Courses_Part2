@@ -1,6 +1,6 @@
 package org.example.task5;
 
-import java.util.List;
+import java.util.List; 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
